@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 if (! function_exists('env')) {
     /**
      * Gets the value of an environment variable.
