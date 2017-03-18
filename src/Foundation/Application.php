@@ -151,7 +151,7 @@ class Application extends Container implements ApplicationContract
      */
     protected function loadEnvironment()
     {
-        if (isset($this->basePath) && file_exists($path = $this->basePath.'/.env')) {
+        if (isset($this->basePath) && file_exists($path = $this->basePath)) {
             (new Dotenv($path))->load();
         }
     }
