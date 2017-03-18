@@ -67,7 +67,7 @@ abstract class Server
         $app->register(\Siphon\Cache\CacheServiceProvider::class);
         $app->register(\Siphon\Database\DatabaseServiceProvider::class);
         $app->register(\Illuminate\Encryption\EncryptionServiceProvider::class);
-        $app->register(\Siphon\Debug\ExceptionHandler::class);
+        $app->register(\Siphon\Debug\DebugServiceProvider::class);
         $app->register(\Illuminate\Filesystem\FilesystemServiceProvider::class);
         $app->register(\Illuminate\Hashing\HashServiceProvider::class);
         $app->register(\Siphon\Http\Cookie\CookieServiceProvider::class);

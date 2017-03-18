@@ -50,11 +50,13 @@ class StartSession implements MiddlewareInterface
 
         $request = $request->withAttribute('session', $session);
 
-        $response = $next($request, $response);
+        $next = $next($request, $response);
+
+        $response = $this->prepareResponse($next);
 
         $this->session->save();
 
-        return $this->prepareResponse($response);
+        return $response;
     }
 
     /**

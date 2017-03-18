@@ -32,8 +32,6 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerExtensions();
-
         $this->registerViewEngine();
 
         $this->registerViewRenderer();

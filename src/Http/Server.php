@@ -4,12 +4,13 @@ namespace Siphon\Http;
 
 use Siphon\Foundation\Application;
 use Zend\Stratigility\MiddlewarePipe;
+use Zend\Stratigility\NoopFinalHandler;
 use Zend\Diactoros\Server as BaseServer;
 use Zend\Stratigility\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-abstract class Server extends \Siphon\Foundation\Server implements MiddlewareInterface
+abstract class Server extends \Siphon\Foundation\Server
 {
     /**
      * URI path prefix
@@ -39,13 +40,18 @@ abstract class Server extends \Siphon\Foundation\Server implements MiddlewareInt
             $_POST,
             $_COOKIE,
             $_FILES
-        )->listen();
+        )->listen(new NoopFinalHandler);
     }
 
     /**
-     * {@inheritdoc}
+     * Use as psr-7 middleware
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Message\ResponseInterface      $response
+     * @param callable|null                            $next
+     * @return \Psr\Http\Message\ResponseInterface
      */
-    public function __invoke(Request $request, Response $response, callable $next)
+    public function __invoke(Request $request, Response $response, callable $next = null)
     {
         $app = $this->getApp();
 
@@ -82,6 +88,8 @@ abstract class Server extends \Siphon\Foundation\Server implements MiddlewareInt
     {
         if (is_null($this->middlewarePipe)) {
             $this->middlewarePipe = new MiddlewarePipe;
+
+            $this->middlewarePipe->setResponsePrototype(new \Zend\Diactoros\Response);
         }
 
         return $this->middlewarePipe;
