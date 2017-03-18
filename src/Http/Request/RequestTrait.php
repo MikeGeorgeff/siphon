@@ -21,6 +21,41 @@ trait RequestTrait
     }
 
     /**
+     * Get input from the request
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param string                                   $parameter
+     * @param mixed                                    $default
+     * @return mixed
+     */
+    public function getInput(Request $request, $parameter, $default = null)
+    {
+        return $this->getParam($request->getParsedBody(), $parameter, $default);
+    }
+
+    /**
+     * Return all input from the request
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param array                                    $except
+     * @return array
+     */
+    public function allInput(Request $request, array $except = [])
+    {
+        $input = $request->getParsedBody();
+
+        if (! empty($except)) {
+            foreach ($except as $key) {
+                if (array_key_exists($key, $input)) {
+                    unset($input[$key]);
+                }
+            }
+        }
+
+        return $input;
+    }
+
+    /**
      * Get an item from the query parameters array
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request
@@ -43,7 +78,7 @@ trait RequestTrait
      */
     public function getServerParam(Request $request, $parameter, $default = null)
     {
-        return $this->getParam($request->getQueryParams(), $parameter, $default);
+        return $this->getParam($request->getServerParams(), $parameter, $default);
     }
 
     /**

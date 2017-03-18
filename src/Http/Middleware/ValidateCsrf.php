@@ -43,7 +43,7 @@ class ValidateCsrf implements MiddlewareInterface
      */
     protected function tokensMatch($request)
     {
-        $token = $this->getQueryParam($request, 'csrf_token') ?: $request->getHeader('X-CSRF-Token');
+        $token = $this->getInput($request, 'csrf_token') ?: $request->getHeader('X-CSRF-Token');
 
         $session = $request->getAttribute('session');
 
