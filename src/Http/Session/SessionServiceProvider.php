@@ -47,6 +47,6 @@ class SessionServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [Session::class, 'session', 'session.handler'];
+        return [Session::class, StartSession::class, 'session', 'session.handler'];
     }
 }
