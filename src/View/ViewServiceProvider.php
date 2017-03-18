@@ -61,7 +61,7 @@ class ViewServiceProvider extends ServiceProvider
     protected function registerViewEngine()
     {
         $this->app->bind('view.engine', function ($app) {
-            $engine = new Engine($app->config('view.path'));
+            $engine = new Engine($app['config']['view.path']);
 
             $engine->loadExtension(new Asset($app->publicPath()));
 
