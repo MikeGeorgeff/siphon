@@ -4,6 +4,7 @@ namespace Siphon\Debug;
 
 use Exception;
 use Whoops\Run;
+use Psr\Log\LoggerInterface;
 use Siphon\Event\Dispatcher;
 use Siphon\Http\Response\Factory;
 use Whoops\Handler\PlainTextHandler;
@@ -17,6 +18,11 @@ class ExceptionHandler
      * @var \Siphon\Event\Dispatcher
      */
     protected $event;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $log;
 
     /**
      * @var \Siphon\Http\Response\Factory
@@ -43,12 +49,14 @@ class ExceptionHandler
 
     /**
      * @param \Siphon\Event\Dispatcher      $event
+     * @param \Psr\Log\LoggerInterface      $log
      * @param \Siphon\Http\Response\Factory $response
      * @param bool                          $debug
      */
-    public function __construct(Dispatcher $event, Factory $response, $debug)
+    public function __construct(Dispatcher $event, LoggerInterface $log, Factory $response, $debug)
     {
         $this->event    = $event;
+        $this->log      = $log;
         $this->response = $response;
         $this->debug    = $debug;
     }
@@ -64,6 +72,8 @@ class ExceptionHandler
     {
         $this->event->dispatch(new Event\ExceptionWasCaught($e, $request));
 
+        $this->log->error($e->getMessage());
+
         return $this->createResponse($e, $this->getRequestFormat($request));
     }
 
@@ -76,6 +86,8 @@ class ExceptionHandler
     public function handleForConsole(Exception $e)
     {
         $whoops = $this->setPlainTextHandler();
+
+        $this->log->error($e->getMessage());
 
         return $whoops->handleException($e);
     }
