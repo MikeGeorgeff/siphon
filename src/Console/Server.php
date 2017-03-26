@@ -68,7 +68,7 @@ abstract class Server extends \Siphon\Foundation\Server
         $app->register(\Siphon\Bus\Provider\BusServiceProvider::class);
         $app->register(\Siphon\Cache\CacheServiceProvider::class);
         $app->register(\Siphon\Database\DatabaseServiceProvider::class);
-        $app->register(\Illuminate\Database\MigrationServiceProvider::class);
+        $app->register(\Siphon\Database\MigrationServiceProvider::class);
         $app->register(\Illuminate\Encryption\EncryptionServiceProvider::class);
         $app->register(\Siphon\Debug\DebugServiceProvider::class);
         $app->register(\Illuminate\Filesystem\FilesystemServiceProvider::class);
