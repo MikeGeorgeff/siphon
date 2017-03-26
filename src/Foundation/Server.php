@@ -60,23 +60,7 @@ abstract class Server
      * @param \Siphon\Foundation\Application $app
      * @return void
      */
-    protected function providers(Application $app)
-    {
-        $app->register(Provider\LogServiceProvider::class);
-        $app->register(\Siphon\Bus\Provider\BusServiceProvider::class);
-        $app->register(\Siphon\Cache\CacheServiceProvider::class);
-        $app->register(\Siphon\Database\DatabaseServiceProvider::class);
-        $app->register(\Illuminate\Encryption\EncryptionServiceProvider::class);
-        $app->register(\Siphon\Debug\DebugServiceProvider::class);
-        $app->register(\Illuminate\Filesystem\FilesystemServiceProvider::class);
-        $app->register(\Illuminate\Hashing\HashServiceProvider::class);
-        $app->register(\Siphon\Http\Cookie\CookieServiceProvider::class);
-        $app->register(\Siphon\Http\Response\ResponseServiceProvider::class);
-        $app->register(\Siphon\Http\Routing\RoutingServiceProvider::class);
-        $app->register(\Siphon\Http\Session\SessionServiceProvider::class);
-        $app->register(\Siphon\Redis\RedisServiceProvider::class);
-        $app->register(\Siphon\View\ViewServiceProvider::class);
-    }
+    abstract protected function providers(Application $app);
 
     /**
      * Array of configuration values to load into the application
