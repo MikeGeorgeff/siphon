@@ -96,7 +96,7 @@ class RedisStore implements Store
      * Set the redis connection instance
      *
      * @param string $connection
-     * @return \Siphon\Cache\RedisStore
+     * @return \Siphon\Cache\Store
      */
     public function setConnection($connection)
     {

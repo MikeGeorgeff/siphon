@@ -162,6 +162,19 @@ class Repository
     }
 
     /**
+     * Set the storage connection
+     * 
+     * @param string $connection
+     * @return \Siphon\Cache\Repository
+     */
+    public function setConnection($connection)
+    {
+        $this->store->setConnection($connection);
+
+        return $this;
+    }
+
+    /**
      * Get the store instance
      *
      * @return \Siphon\Cache\Store

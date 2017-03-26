@@ -53,4 +53,12 @@ interface Store
      * @return void
      */
     public function flush();
+
+    /**
+     * Set the storage connection
+     *
+     * @param string $connection
+     * @return \Siphon\Cache\Store
+     */
+    public function setConnection($connection);
 }

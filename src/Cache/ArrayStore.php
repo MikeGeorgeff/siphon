@@ -62,4 +62,12 @@ class ArrayStore implements Store
     {
         $this->cache = [];
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setConnection($connection)
+    {
+        return $this;
+    }
 }
