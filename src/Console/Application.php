@@ -47,7 +47,9 @@ class Application extends SymfonyApp
      * Add a new command resolving it through the container
      *
      * @param string $command
-     * @return void
+     * @return \Siphon\Console\Command
+     *
+     * @throws \InvalidArgumentException
      */
     public function resolve($command)
     {
@@ -56,7 +58,7 @@ class Application extends SymfonyApp
         if ($instance instanceof Command) {
             $instance->setSiphon($this->siphon);
 
-            $this->add($instance);
+            return $this->add($instance);
         }
 
         throw new \InvalidArgumentException(
