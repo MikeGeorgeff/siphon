@@ -21,11 +21,12 @@ class CacheSessionHandler implements SessionHandlerInterface
 
     /**
      * @param \Siphon\Cache\Repository $cache
+     * @param string                   $connection
      * @param int                      $ttl
      */
-    public function __construct(Repository $cache, $ttl = 120)
+    public function __construct(Repository $cache, $connection = 'default', $ttl = 120)
     {
-        $this->cache = $cache;
+        $this->cache = $cache->setConnection($connection);
         $this->ttl   = $ttl;
     }
 

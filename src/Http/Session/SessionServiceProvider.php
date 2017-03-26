@@ -8,13 +8,6 @@ use Siphon\Http\Middleware\StartSession;
 class SessionServiceProvider extends ServiceProvider
 {
     /**
-     * Determine if loading of the provider is deferred
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
      * Register container bindings
      *
      * @return void
@@ -22,7 +15,11 @@ class SessionServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('session.handler', function ($app) {
-            return new CacheSessionHandler($app['cache'], $app['config']['session.lifetime']);
+            return new CacheSessionHandler(
+                $app['cache'],
+                $app['config']['session.redis_connection'] ?: 'default',
+                $app['config']['session.lifetime']
+            );
         });
 
         $this->app->singleton('session', function ($app) {
@@ -38,15 +35,5 @@ class SessionServiceProvider extends ServiceProvider
         });
 
         $this->app->alias('session', Session::class);
-    }
-
-    /**
-     * Get the services provided
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [Session::class, StartSession::class, 'session', 'session.handler'];
     }
 }
