@@ -76,14 +76,16 @@ class Command extends SymfonyCommand
      * @param \Symfony\Component\Console\Input\InputInterface   $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      * @return void
+     *
+     * @throws \RuntimeException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (method_exists($this, 'handle')) {
-            call_user_func([$this, 'handle']);
+        if (! method_exists($this, 'handle')) {
+            throw new \RuntimeException('Command class must implement a handle method.');
         }
 
-        throw new \RuntimeException('Command class must implement a handle method.');
+        call_user_func([$this, 'handle']);
     }
 
     /**
