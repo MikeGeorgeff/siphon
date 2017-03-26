@@ -7,13 +7,6 @@ use Siphon\Foundation\ServiceProvider;
 class RoutingServiceProvider extends ServiceProvider
 {
     /**
-     * Determine if loading of the provider is deferred
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
      * Register container bindings
      *
      * @return void
@@ -111,26 +104,5 @@ class RoutingServiceProvider extends ServiceProvider
         foreach ($array as $abstract => $alias) {
             $this->app->alias($abstract, $alias);
         }
-    }
-
-    /**
-     * Get the services provided
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [
-            ActionResolver::class,
-            RouteCollection::class,
-            Router::class,
-            UrlGenerator::class,
-            Redirector::class,
-            'action.resolver',
-            'route.collection',
-            'router',
-            'url',
-            'redirector'
-        ];
     }
 }

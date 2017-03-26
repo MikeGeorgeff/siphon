@@ -7,13 +7,6 @@ use Siphon\Foundation\ServiceProvider;
 class CookieServiceProvider extends ServiceProvider
 {
     /**
-     * Determine if loading of the provider is deferred
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
-    /**
      * Register container bindings
      *
      * @return void
@@ -27,15 +20,5 @@ class CookieServiceProvider extends ServiceProvider
         });
 
         $this->app->alias('cookie', Factory::class);
-    }
-
-    /**
-     * Get the services provided
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [Factory::class, 'cookie'];
     }
 }
