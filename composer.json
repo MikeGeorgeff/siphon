@@ -23,6 +23,7 @@
         "nesbot/carbon": "~1.2",
         "nikic/fast-route": "1.1.*",
         "league/plates": "3.3.*",
+        "league/flysystem": "~1.0",
         "filp/whoops": "2.1.*",
         "vlucas/phpdotenv": "2.4.*",
         "monolog/monolog": "1.9.*",
