@@ -52,7 +52,7 @@ class Key extends Command
     protected function generateRandomKey()
     {
         return 'base64:'.base64_encode(
-            random_bytes($this->laravel['config']['app.cipher'] == 'AES-128-CBC' ? 16 : 32)
+            random_bytes($this->siphon['config']['app.cipher'] == 'AES-128-CBC' ? 16 : 32)
         );
     }
 
