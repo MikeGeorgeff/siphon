@@ -22,7 +22,7 @@ class Application extends SymfonyApp
         parent::__construct('Siphon Framework', $siphon->version());
 
         $this->setAutoExit(false);
-        $this->setCatchExceptions(false);
+        $this->setCatchExceptions(true);
 
         $siphon['events']->dispatch(new Event\ConsoleStarting($this));
 
