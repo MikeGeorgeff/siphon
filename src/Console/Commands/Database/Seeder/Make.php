@@ -38,7 +38,7 @@ class Make extends Command
      */
     protected function configure()
     {
-        $this->setName('seeder:name')
+        $this->setName('seeder:make')
              ->setDescription('Generate a new seeder file.')
              ->addArgument('name', InputArgument::REQUIRED, 'The name of the class');
     }
