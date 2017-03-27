@@ -51,7 +51,7 @@ class Status extends Command
         $ran = $this->migrator->getRepository()->getRan();
 
         if (count($migrations = $this->getStatusFor($ran)) > 0) {
-            $this->output->table(['Ran', 'Migration'], $migrations);
+            $this->output->table(['Ran', 'Migration'], $migrations->toArray());
         } else {
             $this->note('No migrations found.');
         }
