@@ -53,7 +53,7 @@ class Reset extends Command
             return $this->note('Migration repository does not exist.');
         }
 
-        $this->migrator->reset($this->getMigrationPath(), $this->option('pretend'));
+        $this->migrator->reset([$this->getMigrationPath()], $this->option('pretend'));
 
         foreach ($this->migrator->getNotes() as $note) {
             $this->writeln($note);
