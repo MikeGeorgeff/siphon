@@ -3,6 +3,7 @@
 namespace Siphon\Database;
 
 use Siphon\Foundation\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Database\Migrations\MigrationCreator;
 use Illuminate\Database\Migrations\DatabaseMigrationRepository;
@@ -29,6 +30,16 @@ class MigrationServiceProvider extends ServiceProvider
         $this->registerMigrator();
 
         $this->registerCreator();
+    }
+
+    /**
+     * Bootstrap application services
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        Schema::setFacadeApplication($this->app);
     }
 
     /**
