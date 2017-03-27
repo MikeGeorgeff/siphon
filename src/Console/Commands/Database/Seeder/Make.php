@@ -4,13 +4,13 @@ namespace Siphon\Console\Commands\Database\Seeder;
 
 use Siphon\Console\Command;
 use Illuminate\Support\Composer;
-use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputArgument;
 
 class Make extends Command
 {
     /**
-     * @var \Illuminate\Contracts\Filesystem\Filesystem
+     * @var \Illuminate\Filesystem\Filesystem
      */
     protected $file;
 
@@ -20,8 +20,8 @@ class Make extends Command
     protected $composer;
 
     /**
-     * @param \Illuminate\Contracts\Filesystem\Filesystem $file
-     * @param \Illuminate\Support\Composer                $composer
+     * @param \Illuminate\Filesystem\Filesystem $file
+     * @param \Illuminate\Support\Composer      $composer
      */
     public function __construct(Filesystem $file, Composer $composer)
     {
