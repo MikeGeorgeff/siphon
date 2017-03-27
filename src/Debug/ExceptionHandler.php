@@ -72,7 +72,7 @@ class ExceptionHandler
     {
         $this->event->dispatch(new Event\ExceptionWasCaught($e, $request));
 
-        $this->log->error($e->getMessage());
+        $this->log->error($e);
 
         return $this->createResponse($e, $this->getRequestFormat($request));
     }
