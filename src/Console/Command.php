@@ -204,7 +204,7 @@ class Command extends SymfonyCommand
      */
     public function info($string)
     {
-        $this->output->block($string, 'INFO', 'fg=green');
+        $this->output->block($string, null, 'fg=green');
     }
 
     /**
@@ -215,7 +215,7 @@ class Command extends SymfonyCommand
      */
     public function note($string)
     {
-        $this->output->block($string, 'NOTE', 'fg=yellow');
+        $this->output->block($string, null, 'fg=yellow');
     }
 
     /**
@@ -226,7 +226,7 @@ class Command extends SymfonyCommand
      */
     public function error($string)
     {
-        $this->output->error($string);
+        $this->output->block($string, null, 'fg=white;bg=red');
     }
 
     /**
@@ -237,7 +237,7 @@ class Command extends SymfonyCommand
      */
     public function success($string)
     {
-        $this->output->success($string);
+        $this->output->block($string, null, 'fg=black;bg=green');
     }
 
     /**
