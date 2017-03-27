@@ -23,7 +23,12 @@ class DebugServiceProvider extends ServiceProvider
         $this->app->bind(ExceptionHandler::class, function ($app) {
             $debug = $app['config']['app.debug'];
 
-            return new ExceptionHandler($app['siphon.events'], $app['response'], $debug);
+            return new ExceptionHandler(
+                $app['siphon.events'],
+                $app['log'],
+                $app['response'],
+                $debug
+            );
         });
     }
 
