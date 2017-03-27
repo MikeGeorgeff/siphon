@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use Siphon\Database\Seeder;
 
 class DummyClass extends Seeder
 {
