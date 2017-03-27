@@ -48,6 +48,5 @@ class ResponseServiceProvider extends ServiceProvider
     protected function registerAliases()
     {
         $this->app->alias('response', Factory::class);
-        $this->app->alias('response', FactoryInterface::class);
     }
 }

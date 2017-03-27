@@ -11,7 +11,7 @@ use Zend\Diactoros\Response\TextResponse;
 use Zend\Diactoros\Response\JsonResponse;
 use Zend\Diactoros\Response\EmptyResponse;
 
-class Factory implements FactoryInterface
+class Factory
 {
     /**
      * @var \Siphon\Http\Routing\Redirector
@@ -37,7 +37,12 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create a new response
+     *
+     * @param \Psr\Http\Message\StreamInterface|string $body
+     * @param int                                      $status
+     * @param array                                    $headers
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function response($body = 'php://memory', $status = 200, array $headers = [])
     {
@@ -45,7 +50,13 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create a new json response
+     *
+     * @param mixed  $data
+     * @param int    $status
+     * @param array  $headers
+     * @param int    $options
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function json($data, $status = 200, array $headers = [], $options = JsonResponse::DEFAULT_JSON_FLAGS)
     {
@@ -53,7 +64,12 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create a new html response
+     *
+     * @param \Psr\Http\Message\StreamInterface|string $html
+     * @param int                                      $status
+     * @param array                                    $headers
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function html($html, $status = 200, array $headers = [])
     {
@@ -61,7 +77,13 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create an html response for a rendered view
+     *
+     * @param string $view
+     * @param array  $parameters
+     * @param int    $status
+     * @param array  $headers
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function view($view, array $parameters = [], $status = 200, array $headers = [])
     {
@@ -71,7 +93,12 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create a new text response
+     *
+     * @param \Psr\Http\Message\StreamInterface|string $text
+     * @param int                                      $status
+     * @param array                                    $headers
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function text($text, $status = 200, array $headers = [])
     {
@@ -79,7 +106,11 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create a new empty response
+     *
+     * @param int   $status
+     * @param array $headers
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function empty($status = 204, array $headers = [])
     {
@@ -87,7 +118,12 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create a new redirect response
+     *
+     * @param \Psr\Http\Message\UriInterface|string $uri
+     * @param int                                   $status
+     * @param array                                 $headers
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function redirect($uri, $status = 302, array $headers = [])
     {
@@ -95,7 +131,12 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create a new redirect response to the given path
+     *
+     * @param string $path
+     * @param int    $status
+     * @param array  $headers
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function redirectTo($path, $status = 302, array $headers = [])
     {
@@ -103,7 +144,11 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create a redirect response to the current location
+     *
+     * @param int   $status
+     * @param array $headers
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function redirectCurrent($status = 302, array $headers = [])
     {
@@ -111,7 +156,12 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create a redirect response to the previous location
+     *
+     * @param int    $status
+     * @param array  $headers
+     * @param string $fallback
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function redirectPrevious($status = 302, array $headers = [], $fallback = '/')
     {
@@ -119,7 +169,13 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Create a redirect response to a route
+     *
+     * @param string $name
+     * @param array  $parameters
+     * @param int    $status
+     * @param array  $headers
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function redirectRoute($name, array $parameters = [], $status = 302, array $headers = [])
     {
@@ -127,7 +183,11 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Flash data to the session
+     *
+     * @param string       $key
+     * @param array|string $value
+     * @return \Siphon\Http\Response\FactoryInterface
      */
     public function flash($key, $value)
     {
@@ -137,7 +197,10 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Flash an array of errors to the session
+     *
+     * @param array $errors
+     * @return \Siphon\Http\Response\FactoryInterface
      */
     public function flashErrors(array $errors)
     {
@@ -147,7 +210,10 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Flash an array of input to the session
+     *
+     * @param array $input
+     * @return \Siphon\Http\Response\FactoryInterface
      */
     public function flashInput(array $input)
     {
