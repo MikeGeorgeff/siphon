@@ -55,7 +55,9 @@ abstract class Server extends \Siphon\Foundation\Server
     {
         $app = $this->getApp();
 
-        $middleware = $this->middleware($app);
+        $this->middleware($app);
+
+        $middleware = $this->middlewarePipe;
 
         return $middleware($request, $response, $next);
     }
@@ -64,7 +66,7 @@ abstract class Server extends \Siphon\Foundation\Server
      * Get the middleware for the application
      *
      * @param \Siphon\Foundation\Application $app
-     * @return \Zend\Stratigility\MiddlewareInterface
+     * @return void
      */
     abstract protected function middleware(Application $app);
 
