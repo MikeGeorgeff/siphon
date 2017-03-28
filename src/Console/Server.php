@@ -74,5 +74,6 @@ abstract class Server extends \Siphon\Foundation\Server
         $app->register(\Siphon\Foundation\Provider\FilesystemServiceProvider::class);
         $app->register(\Siphon\Foundation\Provider\HashServiceProvider::class);
         $app->register(\Siphon\Redis\RedisServiceProvider::class);
+        $app->register(\Siphon\View\ViewServiceProvider::class);
     }
 }
