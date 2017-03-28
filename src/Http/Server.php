@@ -69,6 +69,30 @@ abstract class Server extends \Siphon\Foundation\Server
     abstract protected function middleware(Application $app);
 
     /**
+     * Register service providers
+     *
+     * @param \Siphon\Foundation\Application $app
+     * @return void
+     */
+    protected function providers(Application $app)
+    {
+        $app->register(\Siphon\Foundation\Provider\LogServiceProvider::class);
+        $app->register(\Siphon\Bus\Provider\BusServiceProvider::class);
+        $app->register(\Siphon\Cache\CacheServiceProvider::class);
+        $app->register(\Siphon\Database\DatabaseServiceProvider::class);
+        $app->register(\Siphon\Foundation\Provider\EncryptionServiceProvider::class);
+        $app->register(\Siphon\Debug\DebugServiceProvider::class);
+        $app->register(\Siphon\Foundation\Provider\FilesystemServiceProvider::class);
+        $app->register(\Siphon\Foundation\Provider\HashServiceProvider::class);
+        $app->register(\Siphon\Http\Cookie\CookieServiceProvider::class);
+        $app->register(\Siphon\Http\Response\ResponseServiceProvider::class);
+        $app->register(\Siphon\Http\Routing\RoutingServiceProvider::class);
+        $app->register(\Siphon\Http\Session\SessionServiceProvider::class);
+        $app->register(\Siphon\Redis\RedisServiceProvider::class);
+        $app->register(\Siphon\View\ViewServiceProvider::class);
+    }
+
+    /**
      * Attach middleware to the pipeline
      *
      * @param \Zend\Stratigility\MiddlewareInterface $middleware
